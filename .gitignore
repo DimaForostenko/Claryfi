@@ -1,0 +1,27 @@
+.!gitignore
+
+# ===== Symfony =====
+/symfony/vendor/
+/symfony/var/
+/symfony/.env
+/symfony/.env.local
+/symfony/.env.*.local
+/symfony/public/build/
+
+# ===== Vue =====
+/vue/node_modules/
+/vue/dist/
+/vue/.env
+/vue/.env.local
+
+# ===== Общие =====
+.DS_Store
+.idea/
+.vscode/
+*.log
+
+# Docker
+docker-compose.override.yml
+
+# Nginx logs
+nginx/*.log

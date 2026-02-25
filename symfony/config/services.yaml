@@ -21,3 +21,42 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+# config/services.yaml
+services:
+    # Default configuration for services in this file
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Makes classes in src/ available to be used as services
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # Shipping Carriers
+    App\Domain\TransCompanyCarrier:
+        tags: ['app.shipping_carrier']
+
+    App\Domain\PackGroupCarrier:
+        tags: ['app.shipping_carrier']
+
+    # Carrier Registry
+    App\Service\CarrierRegistry:
+        arguments:
+            $carriers: !tagged_iterator app.shipping_carrier
+
+    # Shipping Calculator Service
+    App\Service\ShippingCalculatorService:
+        arguments:
+            $carrierRegistry: '@App\Service\Shipping\CarrierRegistry'
+            $validator: '@validator'
+
+    # Controllers
+    App\Controller\ShippingController:
+        arguments:
+            $calculatorService: '@App\Service\Shipping\ShippingCalculatorService'
+            $serializer: '@serializer'
+        tags: ['controller.service_arguments']

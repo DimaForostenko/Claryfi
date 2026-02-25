@@ -4,7 +4,7 @@
 /symfony/vendor/
 /symfony/var/
 /symfony/.env
-/symfony/.env.local
+/symfony/.env.dev
 /symfony/.env.*.local
 /symfony/public/build/
 

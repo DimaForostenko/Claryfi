@@ -6,6 +6,30 @@
 
 # To list all registered routes, run the following command:
 #   bin/console debug:router
-
+# config/routes.yaml
 controllers:
     resource: routing.controllers
+
+
+# API Controllers (using attributes/annotations)
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+# Alternative manual routing (if not using attributes)
+# api_shipping_calculate:
+#     path: /api/shipping/calculate
+#     controller: App\Controller\Api\ShippingController::calculate
+#     methods: POST
+
+# api_shipping_carriers:
+#     path: /api/shipping/carriers
+#     controller: App\Controller\Api\ShippingController::getCarriers
+#     methods: GET
+
+# api_shipping_health:
+#     path: /api/shipping/health
+#     controller: App\Controller\Api\ShippingController::health
+#     methods: GET
